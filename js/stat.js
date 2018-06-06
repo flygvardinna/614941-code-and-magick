@@ -46,7 +46,7 @@ window.renderStatistics = function (ctx, names, times) {
 
     var pickColor = function (name) {
       return name === 'Вы' ? 'rgba(255, 0, 0, 1)' : 'rgba(0, ' + Math.floor(Math.random() * 255) + ', 255, 1)';
-    }
+    };
 
     ctx.fillText(Math.floor(times[i]), CLOUD_X + BAR_WIDTH + (BAR_WIDTH + BAR_GAP) * i, CLOUD_HEIGHT - textGap - GAP - barHeight - TEXT_HEIGHT);
     ctx.fillStyle = pickColor(names[i]);
