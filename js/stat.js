@@ -43,9 +43,9 @@ window.renderStatistics = function (ctx, names, times) {
 
   for (var i = 0; i < names.length; i++) {
     var barHeight = (STATS_HEIGHT * times[i]) / maxTime;
-    var randomColor = Math.floor(Math.random() * 255);
+    var randomColor = 'rgba(0, ' + Math.floor(Math.random() * 255) + ', 255, 1)';
     ctx.fillText(Math.floor(times[i]), CLOUD_X + BAR_WIDTH + (BAR_WIDTH + BAR_GAP) * i, CLOUD_HEIGHT - textGap - GAP - barHeight - TEXT_HEIGHT);
-    names[i] === 'Вы' ? ctx.fillStyle = 'rgba(255, 0, 0, 1)' : ctx.fillStyle = 'rgba(0, ' +  randomColor + ', 255, 1)';
+    names[i] === 'Вы' ? ctx.fillStyle = 'rgba(255, 0, 0, 1)' : ctx.fillStyle = randomColor;
     ctx.fillRect(CLOUD_X + BAR_WIDTH + (BAR_WIDTH + BAR_GAP) * i, CLOUD_HEIGHT - textGap - GAP - barHeight, BAR_WIDTH, barHeight);
     ctx.fillStyle = '#000';
     ctx.fillText(names[i], CLOUD_X + BAR_WIDTH + (BAR_WIDTH + BAR_GAP) * i, CLOUD_HEIGHT - textGap);
