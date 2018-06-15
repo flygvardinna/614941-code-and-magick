@@ -22,51 +22,51 @@ var similarWizardTemplate = document.querySelector('#similar-wizard-template')
     .content
     .querySelector('.setup-similar-item');
 
-var onPopupEscPress = function(evt) {
+var onPopupEscPress = function (evt) {
   if (evt.keyCode === ESC_KEYCODE) {
-        closePopup();
+    closePopup();
   }
 };
 
-var openPopup = function() {
+var openPopup = function () {
   setup.classList.remove('hidden');
   document.addEventListener('keydown', onPopupEscPress);
 };
 
-var closePopup = function() {
+var closePopup = function () {
   setup.classList.add('hidden');
   document.removeEventListener('keydown', onPopupEscPress);
 };
 
-setupOpen.addEventListener('click', function() {
+setupOpen.addEventListener('click', function () {
   openPopup();
 });
 
-setupOpen.addEventListener('keydown', function(evt) {
+setupOpen.addEventListener('keydown', function (evt) {
   if (evt.keyCode === ENTER_KEYCODE) {
     openPopup();
   }
 });
 
-setupClose.addEventListener('click', function() {
+setupClose.addEventListener('click', function () {
   closePopup();
 });
 
-setupClose.addEventListener('keydown', function(evt) {
+setupClose.addEventListener('keydown', function (evt) {
   if (evt.keyCode === ENTER_KEYCODE) {
     closePopup();
   }
 });
 
-userNameInput.addEventListener('focus', function() {
+userNameInput.addEventListener('focus', function () {
   document.removeEventListener('keydown', onPopupEscPress);
 });
 
-userNameInput.addEventListener('focusout', function() {
+userNameInput.addEventListener('focusout', function () {
   document.addEventListener('keydown', onPopupEscPress);
 });
 
-userNameInput.addEventListener('invalid', function (evt) {
+userNameInput.addEventListener('invalid', function () {
   if (userNameInput.validity.tooShort) {
     userNameInput.setCustomValidity('Имя должно состоять минимум из 2-х символов');
   } else if (userNameInput.validity.tooLong) {
@@ -82,19 +82,19 @@ var getRandomTrait = function (array) {
   return array[Math.floor(Math.random() * array.length)];
 };
 
-wizardCoat.addEventListener('click', function() {
+wizardCoat.addEventListener('click', function () {
   var newCoatColor = getRandomTrait(COAT_COLORS);
   wizardCoat.style.fill = newCoatColor;
   setup.querySelector('input[name=coat-color]').value = newCoatColor;
 });
 
-wizardEyes.addEventListener('click', function() {
+wizardEyes.addEventListener('click', function () {
   var newEyesColor = getRandomTrait(EYE_COLORS);
   wizardEyes.style.fill = newEyesColor;
   setup.querySelector('input[name=eyes-color]').value = newEyesColor;
 });
 
-fireball.addEventListener('click', function() {
+fireball.addEventListener('click', function () {
   var newFireballColor = getRandomTrait(FIREBALL_COLORS);
   fireball.style = 'background: ' + newFireballColor;
   fireball.querySelector('input[name=fireball-color]').value = newFireballColor;
@@ -112,12 +112,12 @@ var makeWizardsList = function () {
   return wizards;
 };
 
-var renderWizard = function (wizard) {
+var renderWizard = function (similarWizard) {
   var wizardElement = similarWizardTemplate.cloneNode(true);
 
-  wizardElement.querySelector('.setup-similar-label').textContent = wizard.name;
-  wizardElement.querySelector('.wizard-coat').style.fill = wizard.coatColor;
-  wizardElement.querySelector('.wizard-eyes').style.fill = wizard.eyesColor;
+  wizardElement.querySelector('.setup-similar-label').textContent = similarWizard.name;
+  wizardElement.querySelector('.wizard-coat').style.fill = similarWizard.coatColor;
+  wizardElement.querySelector('.wizard-eyes').style.fill = similarWizard.eyesColor;
 
   return wizardElement;
 };
